@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 interface Plan {
   name: string;
@@ -66,20 +67,22 @@ const plans: Plan[] = [
 ];
 
 export default function PricingSection() {
+  const { elementRef, isVisible } = useScrollAnimation();
+
   return (
-    <section id="pricing" className="bg-gray-50 py-20 dark:bg-gray-950 sm:py-24 lg:py-28">
+    <section id="pricing" className="bg-gray-50 py-20 dark:bg-gray-950 sm:py-24 lg:py-28" ref={elementRef}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 dark:border-brand-500/20 dark:bg-brand-500/10">
+          <div className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 dark:border-brand-500/20 dark:bg-brand-500/10 animate-fade-in-down">
             <span className="text-theme-xs font-medium text-brand-700 dark:text-brand-400">
               Pricing
             </span>
           </div>
-          <h2 className="mt-4 text-title-sm font-bold text-gray-900 dark:text-white sm:text-title-md lg:text-title-lg">
+          <h2 className="mt-4 text-title-sm font-bold text-gray-900 dark:text-white sm:text-title-md lg:text-title-lg animate-fade-in-up animation-delay-100">
             Simple, transparent pricing
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-theme-xl text-gray-600 dark:text-gray-400 lg:mt-5">
+          <p className="mx-auto mt-4 max-w-2xl text-theme-xl text-gray-600 dark:text-gray-400 lg:mt-5 animate-fade-in-up animation-delay-200">
             Choose the plan that's right for you. All plans include a 14-day free trial.
           </p>
         </div>
@@ -89,15 +92,18 @@ export default function PricingSection() {
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`relative flex flex-col overflow-visible rounded-2xl ${
+              className={`relative flex flex-col overflow-visible rounded-2xl transition-all duration-500 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              } ${
                 plan.popular
-                  ? "border-2 border-brand-500 bg-white shadow-theme-lg dark:bg-gray-900"
-                  : "border border-gray-200 bg-white shadow-theme-sm dark:border-gray-800 dark:bg-gray-900"
+                  ? "border-2 border-brand-500 bg-white shadow-theme-lg hover:shadow-theme-xl hover:scale-105 dark:bg-gray-900"
+                  : "border border-gray-200 bg-white shadow-theme-sm hover:shadow-theme-lg hover:scale-105 dark:border-gray-800 dark:bg-gray-900"
               } p-6 lg:p-8`}
+              style={{ transitionDelay: `${index * 0.15}s` }}
             >
               {/* Popular badge */}
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 z-10 -translate-x-1/2 rounded-full bg-brand-500 px-4 py-1 text-theme-xs font-medium text-white shadow-theme-sm">
+                <div className="absolute -top-4 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-full bg-brand-500 px-4 py-1 text-theme-xs font-medium text-white shadow-theme-sm">
                   Most Popular
                 </div>
               )}
@@ -147,9 +153,9 @@ export default function PricingSection() {
               {/* CTA button */}
               <Link
                 to="/signup"
-                className={`mt-8 block w-full rounded-lg py-3.5 text-center text-sm font-medium transition ${
+                className={`mt-8 block w-full rounded-lg py-3.5 text-center text-sm font-medium transition-all duration-300 hover:scale-105 ${
                   plan.popular
-                    ? "bg-brand-500 text-white shadow-theme-xs hover:bg-brand-600"
+                    ? "bg-brand-500 text-white shadow-theme-xs hover:bg-brand-600 hover:shadow-theme-md"
                     : "border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-900"
                 }`}
               >

@@ -29,6 +29,18 @@ import SearchResults from "./pages/Storage/SearchResults";
 import Upgrade from "./pages/Storage/Upgrade";
 import Profile from "./pages/Storage/Profile";
 import Landing from "./pages/Landing";
+import PrivacyPolicy from "./pages/Legal/PrivacyPolicy";
+import TermsOfService from "./pages/Legal/TermsOfService";
+import CookiePolicy from "./pages/Legal/CookiePolicy";
+import HelpCenter from "./pages/Support/HelpCenter";
+import About from "./pages/Company/About";
+import Contact from "./pages/Company/Contact";
+import Careers from "./pages/Company/Careers";
+import Security from "./pages/Product/Security";
+import Downloads from "./pages/Product/Downloads";
+import Demo from "./pages/Product/Demo";
+import Blog from "./pages/Resources/Blog";
+import Status from "./pages/Resources/Status";
 import { ToastProvider } from "./components/common/Toast";
 
 export default function App() {
@@ -37,8 +49,20 @@ export default function App() {
       <Router>
         <ScrollToTop />
         <Routes>
-          {/* Landing Page */}
+          {/* Landing & Info Pages */}
           <Route index path="/" element={<Landing />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/security" element={<Security />} />
+          <Route path="/downloads" element={<Downloads />} />
+          <Route path="/demo" element={<Demo />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/status" element={<Status />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/cookies" element={<CookiePolicy />} />
+          <Route path="/help" element={<HelpCenter />} />
 
           {/* Dashboard Layout */}
           <Route element={<AppLayout />}>

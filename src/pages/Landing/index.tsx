@@ -5,9 +5,11 @@ import FeaturesSection from "../../components/landing/FeaturesSection";
 import HowItWorksSection from "../../components/landing/HowItWorksSection";
 import StatsSection from "../../components/landing/StatsSection";
 import PricingSection from "../../components/landing/PricingSection";
+import FAQSection from "../../components/landing/FAQSection";
 import TestimonialsSection from "../../components/landing/TestimonialsSection";
 import CTASection from "../../components/landing/CTASection";
 import LandingFooter from "../../components/landing/LandingFooter";
+import CookieConsent from "../../components/common/CookieConsent";
 
 export default function Landing() {
   return (
@@ -25,8 +27,10 @@ export default function Landing() {
         <HowItWorksSection />
         <TestimonialsSection />
         <PricingSection />
+        <FAQSection />
         <CTASection />
         <LandingFooter />
+        <CookieConsent />
       </div>
     </>
   );

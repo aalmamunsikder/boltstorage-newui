@@ -9,6 +9,7 @@ import {
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
 import SidebarWidget from "./SidebarWidget";
+import Logo from "../components/common/Logo";
 
 type NavItem = {
   name: string;
@@ -292,18 +293,9 @@ const AppSidebar: React.FC = () => {
       >
         <Link to="/" className="flex items-center gap-2">
           {isExpanded || isMobileOpen ? (
-            <>
-              <svg className="h-8 w-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-              <span className="text-xl font-bold text-gray-900 dark:text-white">
-                BoltStorage
-              </span>
-            </>
+            <Logo size="md" />
           ) : (
-            <svg className="h-8 w-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
+            <Logo size="md" showText={false} />
           )}
         </Link>
       </div>

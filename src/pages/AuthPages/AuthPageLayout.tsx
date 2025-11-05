@@ -2,6 +2,7 @@ import React from "react";
 import GridShape from "../../components/common/GridShape";
 import { Link } from "react-router";
 import ThemeTogglerTwo from "../../components/common/ThemeTogglerTwo";
+import Logo from "../../components/common/Logo";
 
 export default function AuthLayout({
   children,
@@ -29,9 +30,7 @@ export default function AuthLayout({
                 <div className="relative">
                   <div className="absolute inset-0 bg-white/20 rounded-2xl blur-xl"></div>
                   <div className="relative bg-white/10 backdrop-blur-sm p-5 rounded-2xl border border-white/20">
-                    <svg className="h-20 w-20 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
+                    <Logo size="xl" variant="white" showText={false} />
                   </div>
                 </div>
                 <span className="text-5xl font-bold text-white tracking-tight">

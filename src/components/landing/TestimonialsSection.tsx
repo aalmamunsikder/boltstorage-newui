@@ -1,73 +1,87 @@
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+
 const testimonials = [
   {
-    content: "BoltStorage has completely transformed how our team collaborates. The speed and reliability are unmatched. We've been able to increase productivity by 40%.",
+    content: "BoltStorage has completely transformed how our team collaborates. The speed and reliability are unmatched.",
     author: "Sarah Johnson",
     role: "CTO at TechCorp",
-    avatar: "SJ",
+    avatar: "https://ui-avatars.com/api/?name=Sarah+Johnson&background=3b82f6&color=fff&size=128",
     rating: 5
   },
   {
-    content: "The security features give me peace of mind. Knowing that our sensitive documents are encrypted end-to-end is crucial for our business.",
+    content: "The security features give me peace of mind. Enterprise-grade encryption for all our sensitive documents.",
     author: "Michael Chen",
     role: "CEO at SecureData Inc",
-    avatar: "MC",
+    avatar: "https://ui-avatars.com/api/?name=Michael+Chen&background=3b82f6&color=fff&size=128",
     rating: 5
   },
   {
-    content: "I've tried many cloud storage solutions, but BoltStorage's interface and features are by far the best. The file sharing capabilities are excellent.",
+    content: "Best cloud storage solution we've tried. The interface is intuitive and file sharing is seamless.",
     author: "Emily Rodriguez",
-    role: "Product Manager at StartupHub",
-    avatar: "ER",
+    role: "Product Manager",
+    avatar: "https://ui-avatars.com/api/?name=Emily+Rodriguez&background=3b82f6&color=fff&size=128",
     rating: 5
   },
   {
-    content: "Outstanding customer support and intuitive interface. We migrated our entire company to BoltStorage and haven't looked back since.",
+    content: "Outstanding support and easy migration. We moved our entire company without any downtime.",
     author: "David Park",
-    role: "Operations Director at GlobalTech",
-    avatar: "DP",
+    role: "Operations Director",
+    avatar: "https://ui-avatars.com/api/?name=David+Park&background=3b82f6&color=fff&size=128",
     rating: 5
   },
   {
-    content: "The real-time sync across devices is flawless. I can start work on my desktop and continue seamlessly on my phone without any issues.",
+    content: "Real-time sync across all my devices works flawlessly. Perfect for my workflow.",
     author: "Lisa Anderson",
     role: "Freelance Designer",
-    avatar: "LA",
+    avatar: "https://ui-avatars.com/api/?name=Lisa+Anderson&background=3b82f6&color=fff&size=128",
     rating: 5
   },
   {
-    content: "BoltStorage's team collaboration features have made remote work so much easier. File versioning has saved us countless times.",
+    content: "Team collaboration features are excellent. File versioning has saved us countless times.",
     author: "James Wilson",
-    role: "Engineering Lead at DevStudio",
-    avatar: "JW",
+    role: "Engineering Lead",
+    avatar: "https://ui-avatars.com/api/?name=James+Wilson&background=3b82f6&color=fff&size=128",
+    rating: 5
+  },
+  {
+    content: "Incredible performance and uptime. Our business depends on BoltStorage and it never lets us down.",
+    author: "Rachel Thompson",
+    role: "Startup Founder",
+    avatar: "https://ui-avatars.com/api/?name=Rachel+Thompson&background=3b82f6&color=fff&size=128",
     rating: 5
   }
 ];
 
 export default function TestimonialsSection() {
+  const { elementRef, isVisible } = useScrollAnimation();
+
   return (
-    <section className="py-20 sm:py-24 lg:py-28">
+    <section className="bg-white py-20 dark:bg-gray-900 sm:py-24 lg:py-28" ref={elementRef}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 dark:border-brand-500/20 dark:bg-brand-500/10">
+          <div className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 dark:border-brand-500/20 dark:bg-brand-500/10 animate-fade-in-down">
             <span className="text-theme-xs font-medium text-brand-700 dark:text-brand-400">
               Testimonials
             </span>
           </div>
-          <h2 className="mt-4 text-title-sm font-bold text-gray-900 dark:text-white sm:text-title-md lg:text-title-lg">
+          <h2 className="mt-4 text-title-sm font-bold text-gray-900 dark:text-white sm:text-title-md lg:text-title-lg animate-fade-in-up animation-delay-100">
             Loved by teams worldwide
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-theme-xl text-gray-600 dark:text-gray-400 lg:mt-5">
-            See what our customers have to say about their experience with BoltStorage.
+          <p className="mx-auto mt-4 max-w-2xl text-theme-base text-gray-600 dark:text-gray-400 lg:mt-5 animate-fade-in-up animation-delay-200">
+            See what our customers have to say about BoltStorage.
           </p>
         </div>
 
-        {/* Testimonials grid */}
+        {/* Testimonials Grid */}
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3 lg:gap-8">
-          {testimonials.map((testimonial, index) => (
+          {testimonials.slice(1).map((testimonial, index) => (
             <div
               key={index}
-              className="flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-theme-sm dark:border-gray-800 dark:bg-gray-900 lg:p-8"
+              className={`flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-theme-sm transition-all duration-500 hover:shadow-theme-lg hover:-translate-y-2 dark:border-gray-800 dark:bg-gray-900 lg:p-8 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${index * 0.1}s` }}
             >
               {/* Rating stars */}
               <div className="flex gap-1">
@@ -90,9 +104,11 @@ export default function TestimonialsSection() {
 
               {/* Author */}
               <div className="mt-6 flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-500 text-sm font-semibold text-white">
-                  {testimonial.avatar}
-                </div>
+                <img
+                  src={testimonial.avatar}
+                  alt={testimonial.author}
+                  className="h-12 w-12 rounded-full"
+                />
                 <div>
                   <div className="font-semibold text-gray-900 dark:text-white">
                     {testimonial.author}

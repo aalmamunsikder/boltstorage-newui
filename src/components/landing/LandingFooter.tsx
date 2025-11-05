@@ -1,35 +1,26 @@
+import Logo from "../common/Logo";
+
 const footerLinks = {
   product: [
     { name: "Features", href: "#features" },
     { name: "Pricing", href: "#pricing" },
-    { name: "Security", href: "#" },
-    { name: "Roadmap", href: "#" },
-    { name: "Integrations", href: "#" },
-    { name: "API", href: "#" }
+    { name: "Security", href: "/security" },
+    { name: "Desktop App", href: "/downloads" }
   ],
   company: [
-    { name: "About Us", href: "#about" },
-    { name: "Blog", href: "#" },
-    { name: "Careers", href: "#" },
-    { name: "Press Kit", href: "#" },
-    { name: "Partners", href: "#" },
-    { name: "Contact", href: "#contact" }
+    { name: "About Us", href: "/about" },
+    { name: "Contact", href: "/contact" },
+    { name: "Careers", href: "/careers" }
   ],
   resources: [
-    { name: "Help Center", href: "#" },
-    { name: "Documentation", href: "#" },
-    { name: "Guides & Tutorials", href: "#" },
-    { name: "Community", href: "#" },
-    { name: "Status", href: "#" },
-    { name: "Changelog", href: "#" }
+    { name: "Help Center", href: "/help" },
+    { name: "Blog", href: "/blog" },
+    { name: "Status", href: "/status" }
   ],
   legal: [
-    { name: "Privacy Policy", href: "#" },
-    { name: "Terms of Service", href: "#" },
-    { name: "Cookie Policy", href: "#" },
-    { name: "GDPR", href: "#" },
-    { name: "Acceptable Use", href: "#" },
-    { name: "SLA", href: "#" }
+    { name: "Privacy Policy", href: "/privacy" },
+    { name: "Terms of Service", href: "/terms" },
+    { name: "Cookie Policy", href: "/cookies" }
   ]
 };
 
@@ -147,10 +138,8 @@ export default function LandingFooter() {
         <div className="mt-8 border-t border-gray-200 pt-8 dark:border-gray-800 lg:mt-12">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             {/* Logo and copyright */}
-            <div className="flex items-center gap-2">
-              <svg className="h-6 w-6 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+            <div className="flex items-center gap-3">
+              <Logo size="sm" showText={false} />
               <span className="text-theme-sm text-gray-600 dark:text-gray-400">
                 © 2025 BoltStorage. All rights reserved.
               </span>

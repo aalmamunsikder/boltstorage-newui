@@ -1,19 +1,15 @@
 import { Link } from "react-router";
 import { ThemeToggleButton } from "../common/ThemeToggleButton";
+import Logo from "../common/Logo";
 
 export default function LandingNav() {
   return (
     <nav className="sticky top-0 z-99999 w-full border-b border-gray-200 bg-white/95 backdrop-blur-sm dark:border-gray-800 dark:bg-gray-900/95">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between lg:h-20">
-          <div className="flex items-center gap-2">
-            <svg className="h-8 w-8 text-brand-500 lg:h-9 lg:w-9" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-            <span className="text-xl font-semibold text-gray-900 dark:text-white lg:text-2xl">
-              BoltStorage
-            </span>
-          </div>
+          <Link to="/">
+            <Logo size="md" />
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-8 md:flex">

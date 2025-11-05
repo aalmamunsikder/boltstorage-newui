@@ -1,3 +1,5 @@
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+
 interface Feature {
   icon: React.ReactNode;
   title: string;
@@ -89,20 +91,22 @@ const features: Feature[] = [
 ];
 
 export default function FeaturesSection() {
+  const { elementRef, isVisible } = useScrollAnimation();
+
   return (
-    <section id="features" className="py-20 sm:py-24 lg:py-28">
+    <section id="features" className="py-20 sm:py-24 lg:py-28" ref={elementRef}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 dark:border-brand-500/20 dark:bg-brand-500/10">
+          <div className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 dark:border-brand-500/20 dark:bg-brand-500/10 animate-fade-in-down">
             <span className="text-theme-xs font-medium text-brand-700 dark:text-brand-400">
               Features
             </span>
           </div>
-          <h2 className="mt-4 text-title-sm font-bold text-gray-900 dark:text-white sm:text-title-md lg:text-title-lg">
+          <h2 className="mt-4 text-title-sm font-bold text-gray-900 dark:text-white sm:text-title-md lg:text-title-lg animate-fade-in-up animation-delay-100">
             Everything you need for cloud storage
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-theme-xl text-gray-600 dark:text-gray-400 lg:mt-5">
+          <p className="mx-auto mt-4 max-w-2xl text-theme-xl text-gray-600 dark:text-gray-400 lg:mt-5 animate-fade-in-up animation-delay-200">
             Powerful features designed to make file management effortless and secure.
           </p>
         </div>
@@ -112,10 +116,13 @@ export default function FeaturesSection() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-theme-sm transition hover:shadow-theme-md dark:border-gray-800 dark:bg-gray-900 lg:p-8"
+              className={`group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-theme-sm transition-all duration-500 hover:shadow-theme-lg hover:-translate-y-2 dark:border-gray-800 dark:bg-gray-900 lg:p-8 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${index * 0.1}s` }}
             >
               {/* Icon */}
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-500 text-white transition group-hover:scale-110">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-500 text-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
                 {feature.icon}
               </div>
 
