@@ -81,46 +81,202 @@ export default function HeroSection() {
 
         {/* Hero Image/Dashboard Preview */}
         <div className="mt-16 lg:mt-20">
-          <div className="relative mx-auto max-w-5xl">
+          <div className="relative mx-auto max-w-6xl">
             {/* Glow effect */}
-            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-brand-500/20 to-blue-light-500/20 blur-2xl"></div>
+            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-brand-500/20 to-blue-light-500/20 blur-3xl"></div>
             
-            <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-theme-xl dark:border-gray-800 dark:bg-gray-900">
+            <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl dark:border-gray-800 dark:bg-gray-900">
               {/* Browser chrome */}
-              <div className="flex items-center gap-2 border-b border-gray-200 bg-gray-50 px-4 py-3 dark:border-gray-800 dark:bg-gray-800">
+              <div className="flex items-center gap-2 border-b border-gray-200 bg-gray-50 px-4 py-3 dark:border-gray-800 dark:bg-gray-800/50">
                 <div className="flex gap-1.5">
                   <div className="h-3 w-3 rounded-full bg-error-500"></div>
                   <div className="h-3 w-3 rounded-full bg-warning-500"></div>
                   <div className="h-3 w-3 rounded-full bg-success-500"></div>
                 </div>
-                <div className="ml-4 flex-1 rounded bg-white px-3 py-1 text-theme-xs text-gray-500 dark:bg-gray-900">
+                <div className="ml-4 flex-1 rounded-md bg-white px-3 py-1.5 text-theme-xs text-gray-500 dark:bg-gray-900/50">
                   boltstorage.app/dashboard
                 </div>
               </div>
               
-              {/* Dashboard preview */}
-              <div className="aspect-video bg-gradient-to-br from-gray-50 to-gray-100 p-8 dark:from-gray-800 dark:to-gray-900">
-                <div className="grid h-full grid-cols-12 gap-4">
-                  {/* Sidebar */}
-                  <div className="col-span-3 space-y-2 rounded-lg bg-white p-4 dark:bg-gray-800">
-                    <div className="h-3 w-3/4 rounded bg-brand-500"></div>
-                    <div className="h-3 w-full rounded bg-gray-200 dark:bg-gray-700"></div>
-                    <div className="h-3 w-5/6 rounded bg-gray-200 dark:bg-gray-700"></div>
-                    <div className="h-3 w-4/6 rounded bg-gray-200 dark:bg-gray-700"></div>
+              {/* Dashboard Content - Matching Real UI */}
+              <div className="bg-gray-50 p-6 dark:bg-gray-900/50 lg:p-8">
+                  {/* Storage Stats Card */}
+                  <div className="mb-6 rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Storage Usage
+                      </h3>
+                      <p className="mt-1 text-2xl font-bold text-gray-900 dark:text-white">
+                        487 GB <span className="text-lg font-normal text-gray-500">of 1000 GB</span>
+                      </p>
+                    </div>
+                    <button className="text-sm font-medium text-brand-500 hover:text-brand-600">
+                      Upgrade
+                    </button>
+                  </div>
+                  {/* Progress bar */}
+                  <div className="mt-4">
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-800">
+                      <div className="h-full w-[48.7%] rounded-full bg-brand-500"></div>
+                    </div>
+                    <p className="mt-2 text-xs text-gray-600 dark:text-gray-400">
+                      48.7% used • 513 GB available
+                    </p>
+                  </div>
+                  </div>
+
+                  {/* Files Grid */}
+                  <div>
+                  <div className="mb-4 flex items-center justify-between">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                      Recent Files
+                    </h3>
+                    <div className="flex gap-2">
+                      <div className="rounded-lg bg-gray-200 px-3 py-1.5 dark:bg-gray-800">
+                        <div className="h-4 w-4 rounded bg-brand-500"></div>
+                      </div>
+                    </div>
                   </div>
                   
-                  {/* Main content */}
-                  <div className="col-span-9 space-y-4 rounded-lg bg-white p-4 dark:bg-gray-800">
-                    <div className="h-4 w-1/3 rounded bg-gray-800 dark:bg-white"></div>
-                    <div className="grid grid-cols-3 gap-3">
-                      <div className="h-16 rounded-lg bg-brand-50 dark:bg-brand-500/10"></div>
-                      <div className="h-16 rounded-lg bg-success-50 dark:bg-success-500/10"></div>
-                      <div className="h-16 rounded-lg bg-orange-50 dark:bg-orange-500/10"></div>
+                  {/* File Cards Grid */}
+                  <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                    {/* File Card 1 - Folder */}
+                    <div className="group rounded-xl border border-gray-200 bg-white p-4 transition hover:border-brand-500 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-brand-500">
+                      <div className="mb-3 flex items-center justify-center rounded-lg bg-brand-50 p-4 dark:bg-brand-500/10">
+                        <svg className="h-8 w-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                        </svg>
+                      </div>
+                      <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                        Projects
+                      </p>
+                      <p className="mt-1 text-xs text-gray-500">
+                        24 files
+                      </p>
                     </div>
-                    <div className="space-y-2">
-                      <div className="h-2 w-full rounded bg-gray-200 dark:bg-gray-700"></div>
-                      <div className="h-2 w-4/5 rounded bg-gray-200 dark:bg-gray-700"></div>
-                      <div className="h-2 w-3/4 rounded bg-gray-200 dark:bg-gray-700"></div>
+
+                    {/* File Card 2 - Image */}
+                    <div className="group rounded-xl border border-gray-200 bg-white p-4 transition hover:border-brand-500 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-brand-500">
+                      <div className="mb-3 flex items-center justify-center rounded-lg bg-success-50 p-4 dark:bg-success-500/10">
+                        <svg className="h-8 w-8 text-success-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                      <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                        Design.jpg
+                      </p>
+                      <p className="mt-1 text-xs text-gray-500">
+                        2.4 MB
+                      </p>
+                    </div>
+
+                    {/* File Card 3 - Document */}
+                    <div className="group rounded-xl border border-gray-200 bg-white p-4 transition hover:border-brand-500 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-brand-500">
+                      <div className="mb-3 flex items-center justify-center rounded-lg bg-blue-50 p-4 dark:bg-blue-500/10">
+                        <svg className="h-8 w-8 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                      </div>
+                      <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                        Report.pdf
+                      </p>
+                      <p className="mt-1 text-xs text-gray-500">
+                        1.8 MB
+                      </p>
+                    </div>
+
+                    {/* File Card 4 - Video */}
+                    <div className="group rounded-xl border border-gray-200 bg-white p-4 transition hover:border-brand-500 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-brand-500">
+                      <div className="mb-3 flex items-center justify-center rounded-lg bg-purple-50 p-4 dark:bg-purple-500/10">
+                        <svg className="h-8 w-8 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                      <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                        Tutorial.mp4
+                      </p>
+                      <p className="mt-1 text-xs text-gray-500">
+                        45.2 MB
+                      </p>
+                    </div>
+                    </div>
+                    
+                    {/* File List View */}
+                    <div className="mt-6">
+                    <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
+                      All Files
+                    </h3>
+                    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+                      {/* List Header */}
+                      <div className="grid grid-cols-12 gap-4 border-b border-gray-200 bg-gray-50 px-4 py-3 text-xs font-medium text-gray-600 dark:border-gray-800 dark:bg-gray-800/50 dark:text-gray-400">
+                        <div className="col-span-6">Name</div>
+                        <div className="col-span-3">Modified</div>
+                        <div className="col-span-3 text-right">Size</div>
+                      </div>
+                      
+                      {/* List Items */}
+                      <div className="divide-y divide-gray-200 dark:divide-gray-800">
+                        {/* File Row 1 */}
+                        <div className="grid grid-cols-12 gap-4 px-4 py-3 transition hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                          <div className="col-span-6 flex items-center gap-3">
+                            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-500/10">
+                              <svg className="h-4 w-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                              </svg>
+                            </div>
+                            <span className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                              Presentation.pptx
+                            </span>
+                          </div>
+                          <div className="col-span-3 flex items-center text-sm text-gray-600 dark:text-gray-400">
+                            2 hours ago
+                          </div>
+                          <div className="col-span-3 flex items-center justify-end text-sm text-gray-600 dark:text-gray-400">
+                            12.4 MB
+                          </div>
+                        </div>
+                        
+                        {/* File Row 2 */}
+                        <div className="grid grid-cols-12 gap-4 px-4 py-3 transition hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                          <div className="col-span-6 flex items-center gap-3">
+                            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-success-50 dark:bg-success-500/10">
+                              <svg className="h-4 w-4 text-success-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                              </svg>
+                            </div>
+                            <span className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                              Vacation-Photo.jpg
+                            </span>
+                          </div>
+                          <div className="col-span-3 flex items-center text-sm text-gray-600 dark:text-gray-400">
+                            Yesterday
+                          </div>
+                          <div className="col-span-3 flex items-center justify-end text-sm text-gray-600 dark:text-gray-400">
+                            5.2 MB
+                          </div>
+                        </div>
+                        
+                        {/* File Row 3 */}
+                        <div className="grid grid-cols-12 gap-4 px-4 py-3 transition hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                          <div className="col-span-6 flex items-center gap-3">
+                            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-50 dark:bg-orange-500/10">
+                              <svg className="h-4 w-4 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                              </svg>
+                            </div>
+                            <span className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                              Budget-2024.xlsx
+                            </span>
+                          </div>
+                          <div className="col-span-3 flex items-center text-sm text-gray-600 dark:text-gray-400">
+                            3 days ago
+                          </div>
+                          <div className="col-span-3 flex items-center justify-end text-sm text-gray-600 dark:text-gray-400">
+                            892 KB
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

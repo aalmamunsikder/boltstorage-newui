@@ -1,14 +1,22 @@
 import { useTheme } from "../../context/ThemeContext";
 
 export default function ThemeTogglerTwo() {
-  const { toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === 'dark';
+
   return (
     <button
       onClick={toggleTheme}
-      className="inline-flex items-center justify-center text-white transition-colors rounded-full size-14 bg-brand-500 hover:bg-brand-600"
+      className="relative inline-flex items-center justify-center text-white transition-all duration-300 rounded-full size-14 bg-brand-500 hover:bg-brand-600 overflow-hidden"
+      aria-label="Toggle theme"
     >
+      {/* Sun Icon - Light Mode */}
       <svg
-        className="hidden dark:block"
+        className={`absolute inset-0 m-auto transition-all duration-500 ease-in-out ${
+          isDark 
+            ? 'rotate-90 scale-0 opacity-0' 
+            : 'rotate-0 scale-100 opacity-100'
+        }`}
         width="20"
         height="20"
         viewBox="0 0 20 20"
@@ -22,8 +30,14 @@ export default function ThemeTogglerTwo() {
           fill="currentColor"
         />
       </svg>
+      
+      {/* Moon Icon - Dark Mode */}
       <svg
-        className="dark:hidden"
+        className={`absolute inset-0 m-auto transition-all duration-500 ease-in-out ${
+          isDark 
+            ? 'rotate-0 scale-100 opacity-100' 
+            : '-rotate-90 scale-0 opacity-0'
+        }`}
         width="20"
         height="20"
         viewBox="0 0 20 20"

@@ -21,17 +21,17 @@ export default function SignUpForm() {
       </div>
       <div className="flex flex-col justify-center flex-1 w-full max-w-md mx-auto">
         <div>
-          <div className="mb-5 sm:mb-8">
-            <h1 className="mb-2 font-semibold text-gray-800 text-title-sm dark:text-white/90 sm:text-title-md">
-              Sign Up
+          <div className="mb-8">
+            <h1 className="mb-3 font-bold text-gray-900 text-title-lg dark:text-white">
+              Create Account
             </h1>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Enter your email and password to sign up!
+            <p className="text-base text-gray-600 dark:text-gray-400">
+              Get started with BoltStorage and experience lightning-fast cloud storage
             </p>
           </div>
           <div>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5">
-              <button className="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <button className="inline-flex items-center justify-center gap-2.5 py-3 text-sm font-medium text-gray-700 transition-all bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 shadow-sm">
                 <svg
                   width="20"
                   height="20"
@@ -58,7 +58,7 @@ export default function SignUpForm() {
                 </svg>
                 Sign up with Google
               </button>
-              <button className="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10">
+              <button className="inline-flex items-center justify-center gap-2.5 py-3 text-sm font-medium text-gray-700 transition-all bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 shadow-sm">
                 <svg
                   width="21"
                   className="fill-current"
@@ -72,13 +72,13 @@ export default function SignUpForm() {
                 Sign up with X
               </button>
             </div>
-            <div className="relative py-3 sm:py-5">
+            <div className="relative py-5">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-200 dark:border-gray-800"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="p-2 text-gray-400 bg-white dark:bg-gray-900 sm:px-5 sm:py-2">
-                  Or
+                <span className="px-4 text-gray-500 bg-white dark:bg-gray-900 dark:text-gray-400">
+                  Or continue with email
                 </span>
               </div>
             </div>
@@ -87,7 +87,7 @@ export default function SignUpForm() {
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                   {/* <!-- First Name --> */}
                   <div className="sm:col-span-1">
-                    <Label>
+                    <Label className="mb-2.5">
                       First Name<span className="text-error-500">*</span>
                     </Label>
                     <Input
@@ -95,11 +95,12 @@ export default function SignUpForm() {
                       id="fname"
                       name="fname"
                       placeholder="Enter your first name"
+                      className="h-12"
                     />
                   </div>
                   {/* <!-- Last Name --> */}
                   <div className="sm:col-span-1">
-                    <Label>
+                    <Label className="mb-2.5">
                       Last Name<span className="text-error-500">*</span>
                     </Label>
                     <Input
@@ -107,30 +108,33 @@ export default function SignUpForm() {
                       id="lname"
                       name="lname"
                       placeholder="Enter your last name"
+                      className="h-12"
                     />
                   </div>
                 </div>
                 {/* <!-- Email --> */}
                 <div>
-                  <Label>
+                  <Label className="mb-2.5">
                     Email<span className="text-error-500">*</span>
                   </Label>
                   <Input
                     type="email"
                     id="email"
                     name="email"
-                    placeholder="Enter your email"
+                    placeholder="name@example.com"
+                    className="h-12"
                   />
                 </div>
                 {/* <!-- Password --> */}
                 <div>
-                  <Label>
+                  <Label className="mb-2.5">
                     Password<span className="text-error-500">*</span>
                   </Label>
                   <div className="relative">
                     <Input
                       placeholder="Enter your password"
                       type={showPassword ? "text" : "password"}
+                      className="h-12 pr-12"
                     />
                     <span
                       onClick={() => setShowPassword(!showPassword)}
@@ -164,19 +168,19 @@ export default function SignUpForm() {
                 </div>
                 {/* <!-- Button --> */}
                 <div>
-                  <button className="flex items-center justify-center w-full px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600">
-                    Sign Up
+                  <button className="flex items-center justify-center w-full h-12 px-4 py-3 text-base font-semibold text-white transition rounded-lg bg-brand-500 shadow-sm hover:bg-brand-600">
+                    Create Account
                   </button>
                 </div>
               </div>
             </form>
 
-            <div className="mt-5">
-              <p className="text-sm font-normal text-center text-gray-700 dark:text-gray-400 sm:text-start">
+            <div className="mt-6">
+              <p className="text-sm font-normal text-center text-gray-600 dark:text-gray-400">
                 Already have an account? {""}
                 <Link
                   to="/signin"
-                  className="text-brand-500 hover:text-brand-600 dark:text-brand-400"
+                  className="font-semibold text-brand-500 hover:text-brand-600 dark:text-brand-400 hover:underline"
                 >
                   Sign In
                 </Link>

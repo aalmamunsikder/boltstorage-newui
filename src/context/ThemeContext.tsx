@@ -39,7 +39,15 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [theme, isInitialized]);
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    // Check if View Transitions API is supported
+    if (document.startViewTransition) {
+      document.startViewTransition(() => {
+        setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+      });
+    } else {
+      // Fallback for browsers that don't support View Transitions API
+      setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    }
   };
 
   return (

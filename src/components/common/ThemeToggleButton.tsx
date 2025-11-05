@@ -1,15 +1,22 @@
 import { useTheme } from "../../context/ThemeContext";
 
 export const ThemeToggleButton: React.FC = () => {
-  const { toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === 'dark';
 
   return (
     <button
       onClick={toggleTheme}
-      className="relative flex items-center justify-center text-gray-500 transition-colors bg-white border border-gray-200 rounded-full hover:text-dark-900 h-11 w-11 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
+      className="relative flex items-center justify-center text-gray-500 transition-all duration-300 bg-white border border-gray-200 rounded-full hover:text-dark-900 h-11 w-11 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white overflow-hidden"
+      aria-label="Toggle theme"
     >
+      {/* Sun Icon - Light Mode */}
       <svg
-        className="hidden dark:block"
+        className={`absolute inset-0 m-auto transition-all duration-500 ease-in-out ${
+          isDark 
+            ? 'rotate-90 scale-0 opacity-0' 
+            : 'rotate-0 scale-100 opacity-100'
+        }`}
         width="20"
         height="20"
         viewBox="0 0 20 20"
@@ -23,8 +30,14 @@ export const ThemeToggleButton: React.FC = () => {
           fill="currentColor"
         />
       </svg>
+      
+      {/* Moon Icon - Dark Mode */}
       <svg
-        className="dark:hidden"
+        className={`absolute inset-0 m-auto transition-all duration-500 ease-in-out ${
+          isDark 
+            ? 'rotate-0 scale-100 opacity-100' 
+            : '-rotate-90 scale-0 opacity-0'
+        }`}
         width="20"
         height="20"
         viewBox="0 0 20 20"
