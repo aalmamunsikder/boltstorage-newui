@@ -4,6 +4,7 @@ import AppHeader from "./AppHeader";
 import Backdrop from "./Backdrop";
 import AppSidebar from "./AppSidebar";
 import FavoritesSidebar, { FavoritesSidebarProvider, useFavoritesSidebar } from "../components/sidebar/FavoritesSidebar";
+import UploadProgressPanel from "../components/upload/UploadProgressPanel";
 
 const LayoutContent: React.FC = () => {
   const { isExpanded, isMobileOpen } = useSidebar();
@@ -31,6 +32,9 @@ const LayoutContent: React.FC = () => {
           <Outlet />
         </div>
       </div>
+      
+      {/* Upload Progress Panel - Always available */}
+      <UploadProgressPanel />
     </div>
   );
 };

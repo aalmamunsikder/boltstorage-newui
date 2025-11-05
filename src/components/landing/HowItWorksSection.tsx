@@ -70,21 +70,21 @@ export default function HowItWorksSection() {
               )}
 
               <div className="relative rounded-2xl border border-gray-200 bg-white p-6 shadow-theme-sm transition hover:shadow-theme-md dark:border-gray-800 dark:bg-gray-900">
-                {/* Number badge */}
-                <div className="absolute -right-2 -top-2 flex h-10 w-10 items-center justify-center rounded-full bg-brand-500 text-sm font-bold text-white shadow-theme-md">
+                {/* Large number watermark */}
+                <div className="absolute right-4 top-4 text-6xl font-bold text-brand-100 dark:text-brand-500/20">
                   {step.number}
                 </div>
 
                 {/* Icon */}
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-500 dark:bg-brand-500/10">
+                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-500 dark:bg-brand-500/10">
                   {step.icon}
                 </div>
 
                 {/* Content */}
-                <h3 className="mt-5 text-lg font-semibold text-gray-900 dark:text-white">
+                <h3 className="relative z-10 mt-5 text-lg font-semibold text-gray-900 dark:text-white">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-theme-sm text-gray-600 dark:text-gray-400">
+                <p className="relative z-10 mt-2 text-theme-sm text-gray-600 dark:text-gray-400">
                   {step.description}
                 </p>
               </div>
