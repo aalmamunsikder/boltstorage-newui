@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { Link } from "react-router";
 import { useSidebar } from "../context/SidebarContext";
+import { useFavoritesSidebar } from "../components/sidebar/FavoritesSidebar";
 import { ThemeToggleButton } from "../components/common/ThemeToggleButton";
 import NotificationDropdown from "../components/header/NotificationDropdown";
 import UserDropdown from "../components/header/UserDropdown";
@@ -10,10 +11,13 @@ const AppHeader: React.FC = () => {
   const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
 
   const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
+  const { isExpanded: favoritesSidebarExpanded, setIsExpanded: setFavoritesSidebarExpanded } = useFavoritesSidebar();
 
   const handleToggle = () => {
     if (window.innerWidth >= 1024) {
+      // On desktop, toggle both sidebars together
       toggleSidebar();
+      setFavoritesSidebarExpanded(!favoritesSidebarExpanded);
     } else {
       toggleMobileSidebar();
     }

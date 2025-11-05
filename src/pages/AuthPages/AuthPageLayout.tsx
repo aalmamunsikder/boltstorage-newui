@@ -16,17 +16,17 @@ export default function AuthLayout({
           <div className="relative flex items-center justify-center z-1">
             {/* <!-- ===== Common Grid Shape Start ===== --> */}
             <GridShape />
-            <div className="flex flex-col items-center max-w-xs">
-              <Link to="/" className="block mb-4">
-                <img
-                  width={231}
-                  height={48}
-                  src="/images/logo/auth-logo.svg"
-                  alt="Logo"
-                />
+            <div className="flex flex-col items-center justify-center text-center max-w-md">
+              <Link to="/" className="mb-6 flex flex-col items-center gap-4">
+                <svg className="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <span className="text-4xl font-bold text-white">
+                  BoltStorage
+                </span>
               </Link>
-              <p className="text-center text-gray-400 dark:text-white/60">
-                Free and Open-Source Tailwind CSS Admin Dashboard Template
+              <p className="text-center text-lg text-gray-400 dark:text-white/60">
+                Lightning Fast Cloud Storage - Secure, Fast, and Reliable
               </p>
             </div>
           </div>

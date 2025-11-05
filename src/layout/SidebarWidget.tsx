@@ -1,23 +1,28 @@
+import { Link } from "react-router";
+
 export default function SidebarWidget() {
   return (
     <div
       className={`
-        mx-auto mb-10 w-full max-w-60 rounded-2xl bg-gray-50 px-4 py-5 text-center dark:bg-white/[0.03]`}
+        mx-auto mb-10 w-full max-w-60 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-600 px-4 py-5 text-center shadow-theme-lg`}
     >
-      <h3 className="mb-2 font-semibold text-gray-900 dark:text-white">
-        #1 Tailwind CSS Dashboard
+      <div className="mb-3 flex justify-center">
+        <svg className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      </div>
+      <h3 className="mb-2 font-semibold text-white">
+        Upgrade Storage
       </h3>
-      <p className="mb-4 text-gray-500 text-theme-sm dark:text-gray-400">
-        Leading Tailwind CSS Admin Template with 400+ UI Component and Pages.
+      <p className="mb-4 text-white/90 text-theme-sm">
+        Get more space and unlock premium features for your files.
       </p>
-      <a
-        href="https://tailadmin.com/pricing"
-        target="_blank"
-        rel="nofollow"
-        className="flex items-center justify-center p-3 font-medium text-white rounded-lg bg-brand-500 text-theme-sm hover:bg-brand-600"
+      <Link
+        to="/upgrade"
+        className="flex items-center justify-center p-3 font-medium text-brand-600 bg-white rounded-lg text-theme-sm hover:bg-gray-50 transition"
       >
-        Purchase Plan
-      </a>
+        View Plans
+      </Link>
     </div>
   );
 }
