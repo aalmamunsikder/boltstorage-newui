@@ -134,8 +134,9 @@ export default function FileManager({ view }: FileManagerProps) {
   };
 
   const handleFileClick = (file: FileItem, event: React.MouseEvent) => {
-    // If clicking checkbox area, don't open preview
-    if ((event.target as HTMLElement).closest('.checkbox-area')) {
+    // If clicking checkbox area or 3-dots menu, don't open preview
+    if ((event.target as HTMLElement).closest('.checkbox-area') || 
+        (event.target as HTMLElement).closest('.menu-button')) {
       return;
     }
     
@@ -455,6 +456,30 @@ export default function FileManager({ view }: FileManagerProps) {
                         </svg>
                       </div>
                     )}
+
+                    {/* 3-Dot Menu Button */}
+                    <div className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      {!file.isStarred && (
+                        <button
+                          onClick={(e) => handleContextMenu(e, file)}
+                          className="menu-button rounded p-1 hover:bg-gray-200 dark:hover:bg-gray-700 bg-white dark:bg-gray-800 shadow-sm"
+                        >
+                          <svg className="h-4 w-4 text-gray-600 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                          </svg>
+                        </button>
+                      )}
+                      {file.isStarred && (
+                        <button
+                          onClick={(e) => handleContextMenu(e, file)}
+                          className="menu-button rounded p-1 hover:bg-gray-200 dark:hover:bg-gray-700 bg-white dark:bg-gray-800 shadow-sm ml-1"
+                        >
+                          <svg className="h-4 w-4 text-gray-600 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 014z" />
+                          </svg>
+                        </button>
+                      )}
+                    </div>
                     
                     <div className="flex flex-col items-center gap-3">
                       {getFileIcon(file)}
@@ -498,7 +523,7 @@ export default function FileManager({ view }: FileManagerProps) {
                 <div className="flex-1">Name</div>
                 <div className="w-32 text-right">Modified</div>
                 <div className="w-24 text-right">Size</div>
-                <div className="w-10"></div>
+                <div className="w-8"></div>
               </div>
 
               {files.map((file) => (
@@ -556,11 +581,16 @@ export default function FileManager({ view }: FileManagerProps) {
                   <div className="w-24 text-right text-sm text-gray-600 dark:text-gray-400">
                     {file.size || "—"}
                   </div>
-                  <button className="w-10 opacity-0 group-hover:opacity-100 rounded p-1 hover:bg-gray-200 dark:hover:bg-gray-700">
-                    <svg className="h-5 w-5 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                    </svg>
-                  </button>
+                  <div className="flex w-8 items-center justify-center">
+                    <button 
+                      onClick={(e) => handleContextMenu(e, file)}
+                      className="menu-button opacity-0 group-hover:opacity-100 rounded p-1 hover:bg-gray-200 dark:hover:bg-gray-700"
+                    >
+                      <svg className="h-4 w-4 text-gray-600 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>

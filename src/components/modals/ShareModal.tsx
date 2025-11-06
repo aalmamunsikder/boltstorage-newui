@@ -23,6 +23,9 @@ export default function ShareModal({ isOpen, onClose, onShare, item }: ShareModa
   const [emailInput, setEmailInput] = useState("");
   const [permission, setPermission] = useState<"view" | "edit">("view");
   const [linkSharing, setLinkSharing] = useState(false);
+  const [expirationDays, setExpirationDays] = useState("7");
+  const [enableWatermark, setEnableWatermark] = useState(false);
+  const [accessType, setAccessType] = useState<"public" | "private" | "team">("public");
   const { showToast } = useToast();
   const [sharedUsers, setSharedUsers] = useState<SharedUser[]>([
     {
@@ -233,15 +236,15 @@ export default function ShareModal({ isOpen, onClose, onShare, item }: ShareModa
             </div>
           </div>
 
-          {/* Link sharing */}
+          {/* Smart Sharing - Link sharing */}
           <div className="border-t border-gray-200 pt-6 dark:border-gray-800">
             <div className="flex items-center justify-between mb-3">
               <div>
                 <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Get link
+                  Smart Share Link
                 </h3>
                 <p className="text-theme-xs text-gray-600 dark:text-gray-400">
-                  Anyone with the link can {linkSharing ? "view" : "access (disabled)"}
+                  Advanced sharing with expiration and watermark
                 </p>
               </div>
               <button
@@ -259,19 +262,85 @@ export default function ShareModal({ isOpen, onClose, onShare, item }: ShareModa
             </div>
             
             {linkSharing && (
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  value={`https://boltstorage.com/share/${item.name}`}
-                  readOnly
-                  className="flex-1 rounded-lg border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm text-gray-600 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
-                />
-                <button
-                  onClick={copyLink}
-                  className="rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
-                >
-                  Copy link
-                </button>
+              <div className="space-y-4">
+                {/* Access Type & Expiration */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Access Type
+                    </label>
+                    <select
+                      value={accessType}
+                      onChange={(e) => setAccessType(e.target.value as "public" | "private" | "team")}
+                      className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+                    >
+                      <option value="public">Public</option>
+                      <option value="private">Private</option>
+                      <option value="team">Team Only</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Expires in
+                    </label>
+                    <select
+                      value={expirationDays}
+                      onChange={(e) => setExpirationDays(e.target.value)}
+                      className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+                    >
+                      <option value="7">7 days</option>
+                      <option value="30">30 days</option>
+                      <option value="90">90 days</option>
+                      <option value="never">Never</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Dynamic Watermark */}
+                <div className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    id="watermark"
+                    checked={enableWatermark}
+                    onChange={(e) => setEnableWatermark(e.target.checked)}
+                    className="h-4 w-4 rounded border-gray-300 text-brand-500 focus:ring-brand-500"
+                  />
+                  <label htmlFor="watermark" className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+                    <svg className="h-4 w-4 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                    </svg>
+                    Add dynamic watermark to shared files
+                  </label>
+                </div>
+
+                {/* Link */}
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={`https://boltstorage.com/share/${item.name}`}
+                    readOnly
+                    className="flex-1 rounded-lg border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm text-gray-600 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
+                  />
+                  <button
+                    onClick={copyLink}
+                    className="rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+                  >
+                    Copy link
+                  </button>
+                </div>
+
+                {/* Share Info */}
+                <div className="rounded-lg bg-blue-50 p-3 dark:bg-blue-500/10">
+                  <div className="flex items-start gap-2">
+                    <svg className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <div className="text-sm text-blue-700 dark:text-blue-300">
+                      <span className="font-medium capitalize">{accessType}</span> link expires in {expirationDays === "never" ? "never" : `${expirationDays} days`}
+                      {enableWatermark && " • Watermark enabled"}
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
           </div>

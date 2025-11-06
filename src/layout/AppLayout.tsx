@@ -10,25 +10,28 @@ const LayoutContent: React.FC = () => {
   const { isExpanded, isMobileOpen } = useSidebar();
   const { isExpanded: favoritesSidebarExpanded } = useFavoritesSidebar();
 
-  const mainSidebarWidth = isExpanded ? 290 : 90;
+  // Only include sidebar width in margin calculation when sidebar is visible
+  const mainSidebarWidth = isMobileOpen || isExpanded ? 290 : (window.innerWidth >= 1024 ? 90 : 0);
   const favoritesSidebarWidth = favoritesSidebarExpanded ? 256 : 0;
   const totalLeftMargin = mainSidebarWidth + favoritesSidebarWidth;
 
   return (
-    <div className="min-h-screen xl:flex">
+    <div className="min-h-screen lg:flex">
       <div>
         <AppSidebar />
-        <FavoritesSidebar />
+        <div className="hidden lg:block">
+          <FavoritesSidebar />
+        </div>
         <Backdrop />
       </div>
       <div
-        className="flex-1 transition-all duration-300 ease-in-out"
+        className="flex-1 transition-all duration-300 ease-in-out border-0"
         style={{
-          marginLeft: isMobileOpen ? 0 : `${totalLeftMargin}px`,
+          marginLeft: window.innerWidth >= 1024 ? `${totalLeftMargin}px` : 0,
         }}
       >
         <AppHeader />
-        <div className="p-4 mx-auto max-w-(--breakpoint-2xl) md:p-6">
+        <div className="p-4 md:p-6">
           <Outlet />
         </div>
       </div>

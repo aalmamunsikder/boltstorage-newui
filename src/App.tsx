@@ -19,6 +19,7 @@ import Blank from "./pages/Blank";
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import CloudStorage from "./pages/Dashboard/CloudStorage";
+import MyFiles from "./pages/Storage/MyFiles";
 import Starred from "./pages/Storage/Starred";
 import Recent from "./pages/Storage/Recent";
 import Shared from "./pages/Storage/Shared";
@@ -67,6 +68,7 @@ export default function App() {
           {/* Dashboard Layout */}
           <Route element={<AppLayout />}>
             <Route path="/dashboard" element={<CloudStorage />} />
+            <Route path="/my-files" element={<MyFiles />} />
             <Route path="/starred" element={<Starred />} />
             <Route path="/recent" element={<Recent />} />
             <Route path="/shared" element={<Shared />} />

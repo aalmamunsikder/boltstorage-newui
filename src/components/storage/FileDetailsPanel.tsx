@@ -48,17 +48,17 @@ export default function FileDetailsPanel({ isOpen, onClose, file }: FileDetailsP
 
   return (
     <>
-      {/* Backdrop */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 z-[9997] bg-black/20 backdrop-blur-sm lg:hidden"
-          onClick={onClose}
-        />
-      )}
+      {/* Backdrop - for all screen sizes */}
+      <div
+        className={`fixed inset-0 z-[9997] bg-black/20 backdrop-blur-sm transition-opacity duration-300 ${
+          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={onClose}
+      />
 
       {/* Side Panel */}
       <div
-        className={`fixed right-0 top-0 z-[9998] h-full w-full bg-white shadow-2xl transition-transform duration-300 dark:bg-gray-900 sm:w-96 ${
+        className={`fixed right-0 top-0 z-[9999] h-full w-full bg-white shadow-2xl transition-transform duration-300 dark:bg-gray-900 sm:w-96 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -142,10 +142,10 @@ export default function FileDetailsPanel({ isOpen, onClose, file }: FileDetailsP
                 </div>
               </div>
 
-              {/* Who has access */}
+              {/* Who has access - Team Workspace */}
               <div>
                 <h3 className="mb-3 text-sm font-semibold text-gray-900 dark:text-white">
-                  Who has access
+                  Team Workspace
                 </h3>
                 <div className="space-y-2">
                   <div className="flex items-center gap-3 rounded-lg border border-gray-200 p-3 dark:border-gray-800">
@@ -156,19 +156,53 @@ export default function FileDetailsPanel({ isOpen, onClose, file }: FileDetailsP
                       <p className="text-sm font-medium text-gray-900 dark:text-white">
                         John Doe (you)
                       </p>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">Owner</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">Owner • Full Access</p>
                     </div>
+                    <span className="rounded-full bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-700 dark:bg-purple-500/20 dark:text-purple-400">
+                      Admin
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 rounded-lg border border-gray-200 p-3 dark:border-gray-800">
+                    <div className="relative">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400">
+                        <span className="text-sm font-semibold">SJ</span>
+                      </div>
+                      <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-white bg-green-500 dark:border-gray-900"></span>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-gray-900 dark:text-white">
+                        Sarah Johnson
+                      </p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">sarah@company.com</p>
+                    </div>
+                    <span className="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-500/20 dark:text-blue-400">
+                      Editor
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 rounded-lg border border-gray-200 p-3 dark:border-gray-800">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-100 text-green-700 dark:bg-green-500/10 dark:text-green-400">
+                      <span className="text-sm font-semibold">MC</span>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-gray-900 dark:text-white">
+                        Michael Chen
+                      </p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">michael@company.com</p>
+                    </div>
+                    <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-700 dark:bg-gray-500/20 dark:text-gray-400">
+                      Viewer
+                    </span>
                   </div>
                 </div>
                 <button className="mt-3 w-full rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-800">
-                  Share
+                  Manage Access
                 </button>
               </div>
 
-              {/* Activity */}
+              {/* Activity Log */}
               <div>
                 <h3 className="mb-3 text-sm font-semibold text-gray-900 dark:text-white">
-                  Recent activity
+                  Activity Log
                 </h3>
                 <div className="space-y-3">
                   <div className="flex gap-3">
@@ -179,27 +213,54 @@ export default function FileDetailsPanel({ isOpen, onClose, file }: FileDetailsP
                     </div>
                     <div className="flex-1">
                       <p className="text-sm text-gray-900 dark:text-white">
-                        <span className="font-medium">You</span> modified this {file.type}
+                        <span className="font-medium">Sarah Johnson</span> edited this {file.type}
                       </p>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">{file.modified}</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">5 minutes ago</p>
                     </div>
                   </div>
-                  {file.created && (
-                    <div className="flex gap-3">
-                      <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-success-100 dark:bg-success-500/10">
-                        <svg className="h-4 w-4 text-success-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                        </svg>
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-sm text-gray-900 dark:text-white">
-                          <span className="font-medium">You</span> created this {file.type}
-                        </p>
-                        <p className="text-xs text-gray-600 dark:text-gray-400">{file.created}</p>
-                      </div>
+                  <div className="flex gap-3">
+                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-100 dark:bg-green-500/10">
+                      <svg className="h-4 w-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                      </svg>
                     </div>
-                  )}
+                    <div className="flex-1">
+                      <p className="text-sm text-gray-900 dark:text-white">
+                        <span className="font-medium">Michael Chen</span> downloaded this {file.type}
+                      </p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">1 hour ago</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-purple-100 dark:bg-purple-500/10">
+                      <svg className="h-4 w-4 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm text-gray-900 dark:text-white">
+                        <span className="font-medium">You</span> shared this {file.type}
+                      </p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">3 hours ago</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-success-100 dark:bg-success-500/10">
+                      <svg className="h-4 w-4 text-success-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm text-gray-900 dark:text-white">
+                        <span className="font-medium">You</span> created this {file.type}
+                      </p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">{file.created || file.modified}</p>
+                    </div>
+                  </div>
                 </div>
+                <button className="mt-3 w-full rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-800">
+                  View Full History
+                </button>
               </div>
             </div>
           </div>

@@ -79,14 +79,14 @@ export default function ContextMenu({ isOpen, position, onClose, items }: Contex
   return (
     <div
       ref={menuRef}
-      className="fixed z-[9999] min-w-[200px] rounded-lg border border-gray-200 bg-white shadow-theme-xl dark:border-gray-700 dark:bg-gray-800"
+      className="fixed z-[9999] min-w-[180px] rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800"
       style={{ left: position.x, top: position.y }}
     >
-      <div className="py-1">
+      <div className="py-0.5">
         {items.map((item, index) => (
           <div key={item.id}>
             {item.divider && index > 0 && (
-              <div className="my-1 h-px bg-gray-200 dark:bg-gray-700" />
+              <div className="my-0.5 h-px bg-gray-200 dark:bg-gray-700" />
             )}
             <button
               onClick={() => {
@@ -96,7 +96,7 @@ export default function ContextMenu({ isOpen, position, onClose, items }: Contex
                 }
               }}
               disabled={item.disabled}
-              className={`flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm transition ${
+              className={`flex w-full items-center gap-2.5 px-3 py-1.5 text-left text-sm transition ${
                 item.disabled
                   ? "cursor-not-allowed opacity-50"
                   : item.danger
@@ -104,7 +104,7 @@ export default function ContextMenu({ isOpen, position, onClose, items }: Contex
                   : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
               }`}
             >
-              <span className="flex h-5 w-5 items-center justify-center">
+              <span className="flex h-4 w-4 items-center justify-center flex-shrink-0">
                 {item.icon}
               </span>
               <span className="flex-1">{item.label}</span>
